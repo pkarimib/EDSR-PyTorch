@@ -1,0 +1,13 @@
+dataset_params:
+  root_dir: /video-conf/scratch/pantea/fom_personalized_1024
+  frame_shape: [1024, 1024, 3]
+
+checkpoint_params:
+    checkpoint_path: '/video-conf/scratch/pantea_experiments_mapmaker/super-resolution-weights/model_pytorch/EDSR_x4.pt'
+
+model_params:
+  generator_params:
+    generator_type: 'edsr'
+    n_feats: 256
+    use_lr_video: True
+    lr_size: 256

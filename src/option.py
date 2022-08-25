@@ -143,6 +143,32 @@ parser.add_argument('--save_results', action='store_true',
 parser.add_argument('--save_gt', action='store_true',
                     help='save low-resolution and high-resolution images together')
 
+# API test config
+parser.add_argument("--config",
+                    default="config/paper_configs/resolution512_with_hr_skip_connections.yaml",
+                    help="path to config")
+parser.add_argument("--checkpoint",
+                    default='None',
+                    help="path to the checkpoints")
+parser.add_argument("--video-path",
+                    default="512_kayleigh_10_second_0_1.mp4",
+                    help="path to the video")
+parser.add_argument("--log-dir",
+                    default="./fom_api_test",
+                    help="directory to save the results")
+parser.add_argument("--output-name",
+                    default="prediction",
+                    help="name of the output file to be saved")
+parser.add_argument("--output-fps",
+                    default=30,
+                    help="fps of the final video")
+parser.add_argument("--lr-quantizer",
+                    type=int, default=32,
+                    help="quantizer to compress low-res video stream with")
+parser.add_argument("--encode-lr",
+                    action='store_true',
+                    help="encode low-res video stream with vpx")
+
 args = parser.parse_args()
 template.set_template(args)
 
