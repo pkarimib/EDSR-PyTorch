@@ -35,7 +35,7 @@ class SuperResolutionModel():
         self.generator_type = generator_params.get('generator_type', 'edsr')
         self.n_feats = generator_params.get('n_feats', 256)
         self.scale = [int(self.shape[1] / self.lr_size)]
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.device = 'cpu'#torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         # initialize weights
         if checkpoint == 'None':
             checkpoint = config['checkpoint_params']['checkpoint_path']
@@ -47,13 +47,13 @@ class SuperResolutionModel():
         args.self_ensemble = True
         args.res_scale = 0.1
         args.n_resblocks = 32
+        args.cpu = True #False if torch.cuda.is_available() else True
 
         checkpoint = utility.checkpoint(args)
         # configure modules
         self.generator = model.Model(args, checkpoint)
         self.generator.eval()
-        self.generator.to(self.device)
-        
+
         self.args = args
         timing_enabled = True
         self.times = []

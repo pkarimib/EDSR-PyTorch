@@ -53,12 +53,11 @@ if not os.path.exists(opts.log_dir):
 model = SuperResolutionModel(opts.config, opts.checkpoint)
 source_lr = np.random.rand(lr_size, lr_size, model.get_shape()[2])
 
-#for _ in range(1):
-#    _ = model.predict_with_lr_video(source_lr)
+for _ in range(1):
+    _ = model.predict_with_lr_video(source_lr)
 
-#get_model_info(opts.log_dir, None,  model.generator)
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = model.device
 timing_enabled = True
 predictions = []
 visual_metrics = []
